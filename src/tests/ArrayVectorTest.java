@@ -6,9 +6,9 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-import project2.classes.ArrayVector;
-import project2.exceptions.InvalidRankException;
-import project2.interfaces.Vector;
+import classes.ArrayVector;
+import exceptions.InvalidRankException;
+import interfaces.Vector;
 
 public class ArrayVectorTest {
 

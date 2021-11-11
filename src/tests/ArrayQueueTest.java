@@ -6,9 +6,9 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-import project2.classes.ArrayQueue;
-import project2.exceptions.EmptyQueueException;
-import project2.interfaces.Queue;
+import classes.ArrayQueue;
+import exceptions.EmptyQueueException;
+import interfaces.Queue;
 
 public class ArrayQueueTest {
 

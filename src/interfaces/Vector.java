@@ -1,6 +1,6 @@
 package interfaces;
 
-import project2.exceptions.InvalidRankException;
+import exceptions.InvalidRankException;
 
 public interface Vector<E> extends BasicCollection {
 

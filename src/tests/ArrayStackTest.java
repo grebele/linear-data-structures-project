@@ -6,9 +6,9 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-import project2.classes.ArrayStack;
-import project2.exceptions.EmptyStackException;
-import project2.interfaces.Stack;
+import classes.ArrayStack;
+import exceptions.EmptyStackException;
+import interfaces.Stack;
 
 public class ArrayStackTest {
 
