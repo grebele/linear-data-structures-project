@@ -1,9 +1,10 @@
 package classes;
 
 import exceptions.InvalidRankException;
-import interfaces.Vector;
+import interfaces.Vector; 
 
-public class ArrayVector implements Vector<Object>{
+public class ArrayVector<E> implements Vector<E>{
+	E data;
 
 	@Override
 	public int size() {
@@ -18,25 +19,25 @@ public class ArrayVector implements Vector<Object>{
 	}
 
 	@Override
-	public Object elemAtRank(int r) throws InvalidRankException {
+	public E elemAtRank(int r) throws InvalidRankException {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public void insertAtRank(int r, Object e) throws InvalidRankException {
+	public void insertAtRank(int r, E e) throws InvalidRankException {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public Object removeAtRank(int r) throws InvalidRankException {
+	public E removeAtRank(int r) throws InvalidRankException {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Object replaceAtRank(int r, Object e) throws InvalidRankException {
+	public E replaceAtRank(int r, E e) throws InvalidRankException {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -45,7 +46,6 @@ public class ArrayVector implements Vector<Object>{
 	public void swapAtRanks(int r, int s) throws InvalidRankException {
 		// TODO Auto-generated method stub
 		
-	}
-
-
+	} 
+	
 }

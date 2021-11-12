@@ -2,8 +2,9 @@ package classes;
 
 import exceptions.EmptyStackException;
 import interfaces.Stack;
+import tests.Person;
 
-public class ArrayStack implements Stack<E> {
+public class ArrayStack<E> implements Stack<E> {
 
 	@Override
 	public int size() {
@@ -15,24 +16,6 @@ public class ArrayStack implements Stack<E> {
 	public boolean isEmpty() {
 		// TODO Auto-generated method stub
 		return false;
-	}
-
-	@Override
-	public Object top() throws EmptyStackException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void push(Object e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public Object pop() throws EmptyStackException {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 	@Override
@@ -52,5 +35,4 @@ public class ArrayStack implements Stack<E> {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
 }

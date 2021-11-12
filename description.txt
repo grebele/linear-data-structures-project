@@ -1,0 +1,15 @@
+PROJECT 2: Array-Based Implementation of Linear Data Structures
+
+Implement the following ADTs in Java using growable arrays: Stack, Queue, Vector.
+
+For this consider the given Java interfaces. Write corresponding classes ArrayStack, ArrayQueue, and ArrayVector, which implement the interfaces. Use Java generics to fix the type of the elements stored in your data structures.
+
+For your implementation of Stack, Queue, and Vector, follow the guidelines and pseudo-code algorithms from the course slides and exercises, therefore use circular arrays whenever necessary to optimize the efficiency of your solution.
+
+Write one or several example programs to show the proper usage of the different ADTs.
+
+Test your implementation with JUnit. Corresponding JUnit test classes are given. Your  solution needs to pass all the tests.
+
+Document your classes with JavaDoc.
+
+DEADLINE: November 29th (code+slides as zip to lhp2@bfh.ch)

@@ -3,7 +3,7 @@ package classes;
 import exceptions.EmptyQueueException;
 import interfaces.Queue;
 
-public class ArrayQueue implements Queue {
+public class ArrayQueue<E> implements Queue<E> {
 
 	@Override
 	public int size() {
@@ -18,19 +18,19 @@ public class ArrayQueue implements Queue {
 	}
 
 	@Override
-	public Object front() throws EmptyQueueException {
+	public E front() throws EmptyQueueException {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public void enqueue(Object e) {
+	public void enqueue(E e) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public Object dequeue() throws EmptyQueueException {
+	public E dequeue() throws EmptyQueueException {
 		// TODO Auto-generated method stub
 		return null;
 	}
