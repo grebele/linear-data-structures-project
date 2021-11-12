@@ -1,38 +1,58 @@
 package classes;
 
 import exceptions.EmptyQueueException;
+import exceptions.FullQueueException;
 import interfaces.Queue;
 
 public class ArrayQueue<E> implements Queue<E> {
-
+	
+	private int frontIndex;
+	private int size;
+	private int capacity;
+	private E elements[];
+	
 	@Override
 	public int size() {
-		// TODO Auto-generated method stub
-		return 0;
+		return size;
 	}
 
 	@Override
 	public boolean isEmpty() {
-		// TODO Auto-generated method stub
-		return false;
+		return (size == 0);
 	}
 
 	@Override
 	public E front() throws EmptyQueueException {
-		// TODO Auto-generated method stub
-		return null;
+		if (isEmpty()) {
+			throw new EmptyQueueException();
+		}
+		else {
+			return elements[frontIndex];
+		}
 	}
 
 	@Override
-	public void enqueue(E e) {
-		// TODO Auto-generated method stub
-		
+	public void enqueue(E e) throws FullQueueException {
+		if (size == capacity) {
+			throw new FullQueueException();
+		}
+		else {
+			elements[(frontIndex + size) % capacity] = e;
+			size++;
+		}
 	}
 
 	@Override
 	public E dequeue() throws EmptyQueueException {
-		// TODO Auto-generated method stub
-		return null;
+		if (isEmpty()) {
+			throw new EmptyQueueException();
+		}
+		else {
+			E e = elements[frontIndex];
+			frontIndex = (frontIndex + 1) % capacity;
+			size--;
+			return e;
+		}
 	}
 
 }

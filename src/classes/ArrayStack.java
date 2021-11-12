@@ -1,38 +1,57 @@
 package classes;
 
 import exceptions.EmptyStackException;
+import exceptions.FullStackException;
 import interfaces.Stack;
-import tests.Person;
 
 public class ArrayStack<E> implements Stack<E> {
-
+	private int size;
+	private int capacity;
+	private E elements[];
+	
+	
 	@Override
 	public int size() {
-		// TODO Auto-generated method stub
-		return 0;
+		return size;
 	}
 
 	@Override
 	public boolean isEmpty() {
-		// TODO Auto-generated method stub
-		return false;
+		return (size == 0);
 	}
 
 	@Override
 	public E top() throws EmptyStackException {
-		// TODO Auto-generated method stub
-		return null;
+		if (isEmpty()) {
+			throw new EmptyStackException();
+		}
+		else {
+			return elements[size-1];
+		}
 	}
 
 	@Override
-	public void push(E e) {
-		// TODO Auto-generated method stub
+	public void push(E e) throws FullStackException {
 		
+		
+//		MIT EXCEPTION ANSTATT GROWABLE STACK
+//		if (size == capacity) {
+//			throw new FullStackException();
+//		}
+//		else {
+//			elements[size] = e;
+//			size++;
+//		}
 	}
 
 	@Override
 	public E pop() throws EmptyStackException {
-		// TODO Auto-generated method stub
-		return null;
+		if (isEmpty()) {
+			throw new EmptyStackException();
+		}
+		else {
+			size--;
+			return elements[size];
+		}
 	}
 }
