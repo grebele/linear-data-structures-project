@@ -32,7 +32,16 @@ public class ArrayStack<E> implements Stack<E> {
 
 	@Override
 	public void push(E e) throws FullStackException {
-		
+		if (size == capacity) {
+			int newCapacity = capacity*2;
+			E newElements[];
+			//weiter nach Pseudo
+			
+			capacity = capacity*2;
+			for (int i=0; i<size-1; i++) {
+				
+			}
+		}
 		
 //		MIT EXCEPTION ANSTATT GROWABLE STACK
 //		if (size == capacity) {
