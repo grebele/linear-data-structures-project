@@ -1,5 +1,7 @@
 package classes;
 
+import java.util.Arrays;
+
 import exceptions.EmptyStackException;
 import exceptions.FullStackException;
 import interfaces.Stack;
@@ -8,6 +10,11 @@ public class ArrayStack<E> implements Stack<E> {
 	private int size;
 	private int capacity;
 	private E elements[];
+	
+	public ArrayStack() {
+		capacity = 8; 
+		size = 1;
+	}
 	
 	
 	@Override
@@ -32,25 +39,25 @@ public class ArrayStack<E> implements Stack<E> {
 
 	@Override
 	public void push(E e) throws FullStackException {
-		if (size == capacity) {
-			int newCapacity = capacity*2;
-			E newElements[];
-			//weiter nach Pseudo
-			
-			capacity = capacity*2;
-			for (int i=0; i<size-1; i++) {
-				
-			}
-		}
+//		if (size == capacity) {
+//			int newCapacity = capacity*2;
+//			E newElements[];
+//			//weiter nach Pseudo
+//			
+//			capacity = capacity*2;
+//			for (int i=0; i<size-1; i++) {
+//				
+//			}
+//		}
 		
 //		MIT EXCEPTION ANSTATT GROWABLE STACK
-//		if (size == capacity) {
-//			throw new FullStackException();
-//		}
-//		else {
-//			elements[size] = e;
-//			size++;
-//		}
+		if (size == capacity) {
+			throw new FullStackException();
+		}
+		else {
+			elements[size] = e;
+			size++;
+		}
 	}
 
 	@Override
@@ -62,5 +69,10 @@ public class ArrayStack<E> implements Stack<E> {
 			size--;
 			return elements[size];
 		}
+	}
+	
+	@Override
+	public String toString() {
+		return "ArrayStack [elements=" + Arrays.toString(elements) + "]";
 	}
 }

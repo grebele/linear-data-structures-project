@@ -33,6 +33,7 @@ public class ArrayQueue<E> implements Queue<E> {
 
 	@Override
 	public void enqueue(E e) throws FullQueueException {
+		// besser GROWABLE
 		if (size == capacity) {
 			throw new FullQueueException();
 		}
