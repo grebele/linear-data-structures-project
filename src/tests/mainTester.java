@@ -7,20 +7,20 @@ public class mainTester{
 	public static void main(String[] args) {
 		ArrayStackTest();				
 	}
+	
 	public static void ArrayStackTest() {
-		TestPerson simon = new TestPerson("Simon");
-//		TestPerson domingo = new TestPerson("Domingo");
-		// Erin
-		TestPerson joao = new TestPerson("Joao");		
-		System.out.println("hooi");
-		
-		ArrayStack<TestPerson> people = new ArrayStack<>();
-		System.out.println(people);
-		people.push(simon);
-		System.out.println(people);
-		people.push(joao);
-		System.out.println(people);
-		System.out.println(simon + "hey");
-
+		ArrayStack<Integer> arrStack = new ArrayStack<>();
+		arrStack.push(1);
+		System.out.println(arrStack);
+		arrStack.push(4);
+		arrStack.push(8);
+		System.out.println(arrStack);
+		arrStack.pop();
+		System.out.println(arrStack);
+		arrStack.push(7);
+		System.out.println(arrStack);
+		arrStack.push(10);
+		System.out.println(arrStack);
+		System.out.println(arrStack.size());
 	}
 }

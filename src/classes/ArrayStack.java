@@ -1,5 +1,6 @@
 package classes;
 
+import java.lang.reflect.Array;
 import java.util.Arrays;
 
 import exceptions.EmptyStackException;
@@ -8,12 +9,12 @@ import interfaces.Stack;
 
 public class ArrayStack<E> implements Stack<E> {
 	private int size;
-	private int capacity;
-	private E elements[];
+	private int capacity = 2;
+	private Object[] arr;
 	
 	public ArrayStack() {
-		capacity = 8; 
-		size = 1;
+		size = 0;
+		arr = new Object[capacity] ;
 	}
 	
 	
@@ -27,39 +28,37 @@ public class ArrayStack<E> implements Stack<E> {
 		return (size == 0);
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public E top() throws EmptyStackException {
 		if (isEmpty()) {
 			throw new EmptyStackException();
 		}
 		else {
-			return elements[size-1];
+			return (E) arr[size-1];
 		}
 	}
 
 	@Override
-	public void push(E e) throws FullStackException {
-//		if (size == capacity) {
-//			int newCapacity = capacity*2;
-//			E newElements[];
-//			//weiter nach Pseudo
-//			
-//			capacity = capacity*2;
-//			for (int i=0; i<size-1; i++) {
-//				
-//			}
-//		}
-		
-//		MIT EXCEPTION ANSTATT GROWABLE STACK
+	public void push(E e) {
 		if (size == capacity) {
-			throw new FullStackException();
+			int newCapacity = capacity*2;
+			Object[] newArr = new Object[newCapacity];
+			capacity = capacity*2;
+			// copy elements to new array
+			for (int i=0; i<size; i++) {
+				newArr[i] = arr[i];
+			}
+			arr = newArr;
+			capacity = newCapacity;
 		}
-		else {
-			elements[size] = e;
-			size++;
-		}
+		
+		arr[size] = e;
+		size++;
+		
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public E pop() throws EmptyStackException {
 		if (isEmpty()) {
@@ -67,12 +66,12 @@ public class ArrayStack<E> implements Stack<E> {
 		}
 		else {
 			size--;
-			return elements[size];
+			return (E) arr[size];
 		}
 	}
 	
 	@Override
 	public String toString() {
-		return "ArrayStack [elements=" + Arrays.toString(elements) + "]";
+		return "ArrayStack [elements=" + Arrays.toString(arr) + "]";
 	}
 }
