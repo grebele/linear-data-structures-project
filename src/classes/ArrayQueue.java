@@ -10,6 +10,10 @@ public class ArrayQueue<E> implements Queue<E> {
 	private int capacity;
 	private Object[] arr;
 	
+	/**
+	 * Constructor
+	 * Initialise capacity, array, size
+	 */
 	public ArrayQueue() {
 		size = 0;
 		capacity = 2; 
