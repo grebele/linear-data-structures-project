@@ -1,33 +1,44 @@
 package classes;
 
-import java.lang.reflect.Array;
 import java.util.Arrays;
 
 import exceptions.EmptyStackException;
-import exceptions.FullStackException;
 import interfaces.Stack;
 
 public class ArrayStack<E> implements Stack<E> {
 	private int size;
-	private int capacity = 2;
+	private int capacity;
 	private Object[] arr;
 	
+	/**
+	 * Constructor
+	 * Initialise capacity, array, size
+	 */
 	public ArrayStack() {
 		size = 0;
-		arr = new Object[capacity] ;
+		capacity = 2;
+		arr = new Object[capacity];
 	}
 	
-	
+	/**
+	 * returns size of the array
+	 */
 	@Override
 	public int size() {
 		return size;
 	}
 
+	/**
+	 * return true if array is empty
+	 */
 	@Override
 	public boolean isEmpty() {
 		return (size == 0);
 	}
 
+	/**
+	 * get element on top of the stack
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public E top() throws EmptyStackException {
@@ -39,13 +50,17 @@ public class ArrayStack<E> implements Stack<E> {
 		}
 	}
 
+	/**
+	 * add element to the top of the stack
+	 */
 	@Override
 	public void push(E e) {
 		if (size == capacity) {
+			// initialise new capacity
 			int newCapacity = capacity*2;
 			Object[] newArr = new Object[newCapacity];
 			capacity = capacity*2;
-			// copy elements to new array
+			// copy elements to temporary array
 			for (int i=0; i<size; i++) {
 				newArr[i] = arr[i];
 			}
@@ -58,6 +73,9 @@ public class ArrayStack<E> implements Stack<E> {
 		
 	}
 
+	/**
+	 * remove element from the top of the stack
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public E pop() throws EmptyStackException {
@@ -70,6 +88,9 @@ public class ArrayStack<E> implements Stack<E> {
 		}
 	}
 	
+	/**
+	 * returns elements as string
+	 */
 	@Override
 	public String toString() {
 		return "ArrayStack [elements=" + Arrays.toString(arr) + "]";
