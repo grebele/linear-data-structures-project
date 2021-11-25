@@ -5,7 +5,16 @@ import interfaces.Vector;
 import tests.Patientenakte;
 
 public class Main {
+
 	public static void main(String args[]) {
+		showVector();
+		showStack();
+	}
+
+	/**
+	 * Example to show the function of the ArrayVector Class
+	 */
+	public static void showVector() {
 
 		Vector<Integer> vector = new ArrayVector<>();
 
@@ -28,11 +37,8 @@ public class Main {
 		System.out.println(vector);
 		vector.insertAtRank(2, 444444);
 
-		
 		System.out.println(vector);
 		System.out.println(vector.size());
-		// showStack();
-
 	}
 
 	/**
