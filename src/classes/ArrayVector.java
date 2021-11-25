@@ -1,36 +1,24 @@
 package classes;
 
 import java.lang.reflect.Array;
-import exceptions.FullVectorException;
+import java.util.Arrays;
 import exceptions.InvalidRankException;
 import interfaces.Vector;
 
 public class ArrayVector<E> implements Vector<E> {
 	private Object elements[];
-	//private int size;
+	private int size;
 	private int n;
 
-	private static final int INITIAL_SIZE = 100;
-
-	public ArrayVector() {
-		elements = new Object[INITIAL_SIZE];
-	}
+	private static final int INITIAL_SIZE = 5;
+	private int capacity = INITIAL_SIZE;
 
 	/**
-	 * n ist die Anzahl Elemente im Vector iteriert durch Array, wenn Element null
-	 * ist wird noch +1 für den nächsten freien platz
-	 * @return 
-	 * 
+	 * Constructor, initialize Array with given size
 	 */
-	public int getN() {
-		for (int i = 0; i < size(); i++) {
-			if (elemAtRank(i) == null) {
-				return i+1;
-			} else {
-				//System.out.println(elemAtRank(i));
-			}
-		}
-		return -1;
+	public ArrayVector() {
+		elements = new Object[INITIAL_SIZE];
+		size = 0;
 	}
 
 	@Override
@@ -38,68 +26,100 @@ public class ArrayVector<E> implements Vector<E> {
 	 * returns size of the array
 	 */
 	public int size() {
-		return Array.getLength(elements);
+		return size;
+	}
+
+	/**
+	 * counts the elements in array and returns amount
+	 * 
+	 * @return
+	 */
+	public int getLength() {
+		for (int i = 0; i < Array.getLength(elements); i++) {
+			if (elements[i] == null) {
+				return i;
+			}
+		}
+		return -1;
 	}
 
 	@Override
 	/**
-	 * return true if array is empty
+	 * check if array is empty -> hasn't any elementens in it return true if array
+	 * is empty
 	 */
 	public boolean isEmpty() {
 		return (size() == 0);
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	/**
-	 * retruns Element at rank r, if r is invalid throw exception
+	 * returns element at rank r, if r is invalid throw exception
 	 */
 	public E elemAtRank(int r) throws InvalidRankException {
-		/*
-		 * if (r < 0 || r >= size()) { throw new InvalidRankException(); }
-		 */
-		return (E) elements[r];
-	}
 
-	@Override
-	/**
-	 * Element an Position r einfügen alle Elemente ab r einen Platz nach hinten
-	 * verschieben, um Platz zu machen für e
-	 */
-	public void insertAtRank(int r, E e) throws InvalidRankException {
-		/*
-		 * if (r < 0 && r > size()) { throw new InvalidRankException(); }
-		 */
-		n=getN();
-		if (isEmpty()) {
-			elements[0] = e;
-		} else if (n + 1 < size()) {
-			for (int i = n; i <= n+1; i++) { // alle Elemente ab r ein Platz nach hinten verschieben
-				E temp = elemAtRank(i);
-				elements[i + 1] = temp;
-				elements[i] = null;
-			}
-			elements[r] = e;
-		} else {
-			throw new FullVectorException();
-		}
-
-	}
-
-	@Override
-	/**
-	 * Element an stelle r löschen, alle Elemente links von r um einen Platz nach
-	 * vorne verschieben n wird danach zu n-1
-	 */
-	public E removeAtRank(int r) throws InvalidRankException {
-		if (r >= 0 && r < size()) {
+		if (r < 0 || r > capacity) {
 			throw new InvalidRankException();
 		}
-		for (int i = r; i < size(); i++) { // alle Elemente ab r ein Platz nach hinten verschieben
+
+		return (E) elements[r]; // parse and return element
+	}
+
+	@Override
+	/**
+	 * insert element at position r move elements from r to n 1 position left, make
+	 * space at position r for new element
+	 */
+	public void insertAtRank(int r, E e) throws InvalidRankException {
+
+		if (r < 0 || r > capacity) { //rank isn't valid
+			throw new InvalidRankException();
+		}
+
+		n = size();
+		if (isEmpty()) { //array without elements in it
+			elements[0] = e;
+		} else if (elements[r] == null) { //if position r is null, insert element directly
+			elements[r] = e;
+		} else if (n + 1 < capacity) { //if array has enough capacity for another element
+			for (int i = n - 1; i >= r; i--) { // move elements 1 position 
+				E temp = elemAtRank(i);
+				elements[i + 1] = temp;
+			}
+			elements[r] = e;//insert element at position r
+		} else { //array isn't big enough, double the capacity
+			int newCapacity = capacity * 2;
+			Object[] newArr = new Object[newCapacity];
+			capacity = capacity * 2;
+			// copy elements to new array
+			for (int i = 0; i <= r; i++) {
+				newArr[i] = elements[i];
+			}
+			newArr[r] = e;
+			for (int i = r + 1; i <= size(); i++) {
+				newArr[i] = elements[i - 1];
+			}
+			elements = newArr;
+			capacity = newCapacity;
+		}
+		size++;
+	}
+
+	@Override
+	/**
+	 * remove element at position r
+	 */
+	public E removeAtRank(int r) throws InvalidRankException {
+		if (r < 0 || r >= size()) { //rank isn't valid
+			throw new InvalidRankException();
+		}
+		for (int i = r; i < size(); i++) { 
 			elements[i] = elements[i + 1];
 			elements[i + 1] = null;
 		}
-		//setN();// n aktualisieren
-		return elemAtRank(r); // neues Element an Platz r
+		size--;
+		return elemAtRank(r); 
 	}
 
 	@Override
@@ -113,6 +133,7 @@ public class ArrayVector<E> implements Vector<E> {
 			elements[r] = e;
 			return elemAtRank(r);
 		}
+
 	}
 
 	@Override
@@ -120,10 +141,21 @@ public class ArrayVector<E> implements Vector<E> {
 	 * swap two elements in the list
 	 */
 	public void swapAtRanks(int r, int s) throws InvalidRankException {
-		E temp_r = elemAtRank(r);
-		elements[r] = elements[s];
-		elements[s] = temp_r;
+		if (r < 0 || r > capacity || s < 0 || s > capacity) {
+			throw new InvalidRankException();
+		} else {
+			E temp_r = elemAtRank(r);
+			elements[r] = elements[s];
+			elements[s] = temp_r;
+		}
+	}
 
+	@Override
+	/**
+	 * return Content from Array
+	 */
+	public String toString() {
+		return "ArrayVector [elements=" + Arrays.toString(elements) + ", n=" + n + ", capacity=" + capacity + "]";
 	}
 
 }
