@@ -33,7 +33,7 @@ public class ArrayQueue<E> implements Queue<E> {
 	}
 
 	/**
-	 * 
+	 * returns front element of the queue
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
@@ -47,17 +47,17 @@ public class ArrayQueue<E> implements Queue<E> {
 	}
 
 	/**
-	 * 
+	 * add element to the end of the end of the queue
 	 */
 	@Override
 	public void enqueue(E e) {
-		// besser GROWABLE
 		if (size == capacity) {
 			if (size == capacity) {
+				// initialise new capacity
 				int newCapacity = capacity*2;
 				Object[] newArr = new Object[newCapacity];
 				capacity = capacity*2;
-				// copy arr to new array
+				// copy elements to temporary array
 				for (int i=0; i<size; i++) {
 					newArr[i] = arr[i];
 				}
@@ -69,13 +69,14 @@ public class ArrayQueue<E> implements Queue<E> {
 			size++;
 		}
 		else {
+			// insert element to the next available index 
 			arr[(frontIndex + size) % capacity] = e;
 			size++;
 		}
 	}
 
 	/**
-	 * 
+	 * remove element from the front
 	 */
 	@Override
 	public E dequeue() throws EmptyQueueException {
