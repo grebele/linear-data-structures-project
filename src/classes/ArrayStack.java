@@ -57,15 +57,13 @@ public class ArrayStack<E> implements Stack<E> {
 	public void push(E e) {
 		if (size == capacity) {
 			// initialise new capacity
-			int newCapacity = capacity*2;
-			Object[] newArr = new Object[newCapacity];
-			capacity = capacity*2;
+			capacity *= 2;
+			Object[] newArr = new Object[capacity];
 			// copy elements to temporary array
 			for (int i=0; i<size; i++) {
 				newArr[i] = arr[i];
 			}
 			arr = newArr;
-			capacity = newCapacity;
 		}
 		
 		arr[size] = e;

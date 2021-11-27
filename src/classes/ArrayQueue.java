@@ -1,5 +1,7 @@
 package classes;
 
+import java.util.Arrays;
+
 import exceptions.EmptyQueueException;
 import interfaces.Queue;
 
@@ -58,15 +60,13 @@ public class ArrayQueue<E> implements Queue<E> {
 		if (size == capacity) {
 			if (size == capacity) {
 				// initialise new capacity
-				int newCapacity = capacity*2;
-				Object[] newArr = new Object[newCapacity];
-				capacity = capacity*2;
+				capacity *= 2;
+				Object[] newArr = new Object[capacity];
 				// copy elements to temporary array
 				for (int i=0; i<size; i++) {
 					newArr[i] = arr[i];
 				}
 				arr = newArr;
-				capacity = newCapacity;
 			}
 			
 			arr[size] = e;
@@ -101,5 +101,13 @@ public class ArrayQueue<E> implements Queue<E> {
 			}
 		}
 	}
+
+	@Override
+	public String toString() {
+		return "ArrayQueue [frontIndex=" + frontIndex + ", size=" + size + ", capacity=" + capacity + ", elements="
+				+ Arrays.toString(arr) + "]";
+	}
+	
+	
 
 }
