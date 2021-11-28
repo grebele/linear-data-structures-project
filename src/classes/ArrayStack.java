@@ -88,9 +88,10 @@ public class ArrayStack<E> implements Stack<E> {
 	
 	/**
 	 * returns elements as string
+	 * To present how this stack works, removed elements are shown even if they got poped away. They get overwritten with push()
 	 */
 	@Override
 	public String toString() {
-		return "ArrayStack [elements=" + Arrays.toString(arr) + "]";
+		return "ArrayStack [elements=" + Arrays.toString(arr) + "";
 	}
 }

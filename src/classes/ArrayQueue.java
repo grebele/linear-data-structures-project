@@ -104,8 +104,8 @@ public class ArrayQueue<E> implements Queue<E> {
 
 	@Override
 	public String toString() {
-		return "ArrayQueue [frontIndex=" + frontIndex + ", size=" + size + ", capacity=" + capacity + ", elements="
-				+ Arrays.toString(arr) + "]";
+		return "ArrayQueue [elements=" + Arrays.toString(arr) + ", frontIndex=" + frontIndex + ", size=" + size + ", capacity=" + capacity
+				+ "]";
 	}
 	
 	

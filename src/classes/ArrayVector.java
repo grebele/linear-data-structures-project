@@ -109,7 +109,8 @@ public class ArrayVector<E> implements Vector<E> {
 	public E replaceAtRank(int r, E e) throws InvalidRankException {
 		if (isEmpty() || r >= size() || r < 0) {
 			throw new InvalidRankException();
-		} else {
+		} 
+		else {
 			arr[r] = e;
 			return elemAtRank(r);
 		}
@@ -121,7 +122,7 @@ public class ArrayVector<E> implements Vector<E> {
 	 */
 	@Override
 	public void swapAtRanks(int r, int s) throws InvalidRankException {
-		if (r < 0 || r > capacity || s < 0 || s > capacity) {
+		if (r < 0 || r >= size || s < 0 || s >= size) {
 			throw new InvalidRankException();
 		} else {
 			E temp_r = elemAtRank(r);

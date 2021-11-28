@@ -4,18 +4,18 @@ package tests;
 public class Patientenakte {
 	
 	private String name;
-	private int patID;
+	private int ahvNb;
 	private int telnumb;
 	
 
-	public Patientenakte(String name, int patID) {
+	public Patientenakte(String name, int ahvNb) {
 		this.name = name;
-		this.patID = patID; 
+		this.ahvNb = ahvNb; 
 	}
 	
-	public Patientenakte(String name, int patID, int telnumb) {
+	public Patientenakte(String name, int ahvNb, int telnumb) {
 		this.name = name;
-		this.patID = patID;
+		this.ahvNb = ahvNb;
 		this.telnumb = telnumb;
 	}
 	
@@ -23,8 +23,8 @@ public class Patientenakte {
 		return name;
 	}
 	
-	public int getPatID() {
-		return patID;
+	public int getahvNb() {
+		return ahvNb;
 	}
 	
 
@@ -38,7 +38,7 @@ public class Patientenakte {
 
 	@Override
 	public String toString() {
-		return "Patienten ID: " + patID + ", Name: " + name + ", Telefon Nummer: " + telnumb;
+		return name;
 	}
 	
 
