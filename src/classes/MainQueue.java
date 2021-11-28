@@ -8,7 +8,7 @@ public class MainQueue {
 		System.out.println("-------------------------------------------------------------------------------");
 		System.out.println("Example of a waiting room to show the function of the ArrayQueue Class.");
 		System.out.println("-------------------------------------------------------------------------------");
-		System.out.println("-> Initialise a new Queue of the Type String");
+		System.out.println("-> Initialise a new Queue of the type Patientenakte");
 		Queue<Patientenakte> queue = new ArrayQueue<>();
 		System.out.println("Check the size of the Queue and look if Queue is empty:");
 		System.err.println("Size: " + queue.size() + "       | " + " expected = 0");
@@ -36,7 +36,7 @@ public class MainQueue {
 		System.out.println(queue);
 		System.out.println("-------------------------------------------------------------------------------");
 		System.out.println("-> Get Person waiting for the longest time. front() ");
-		System.err.println("front(): " + queue.front() + "     | expected: Lua");
+		System.err.println("front(): " + queue.front() + ", tel. number: " + queue.front().getTelnumb() + ", AHV number: "+ queue.front().getahvNb() + " | expected: Lua and her data");
 		System.out.println("-------------------------------------------------------------------------------");
 		System.out.println("-> Serve the person who has waited the longest (Lua should be removed)");
 		queue.dequeue();
