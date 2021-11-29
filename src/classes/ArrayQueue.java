@@ -58,25 +58,20 @@ public class ArrayQueue<E> implements Queue<E> {
 	@Override
 	public void enqueue(E e) {
 		if (size == capacity) {
-			if (size == capacity) {
 				// initialise new capacity
-				capacity *= 2;
-				Object[] newArr = new Object[capacity];
+				int newCapacity = capacity * 2;
+				Object[] newArr = new Object[newCapacity];
 				// copy elements to temporary array
-				for (int i=0; i<size; i++) {
-					newArr[i] = arr[i];
+				for (int i=0; i<capacity; i++) {
+					newArr[i] = arr[(frontIndex + i) % capacity];
 				}
+				frontIndex = 0;
+				capacity = newCapacity;
 				arr = newArr;
 			}
-			
-			arr[size] = e;
-			size++;
-		}
-		else {
 			// insert element to the next available index 
 			arr[(frontIndex + size) % capacity] = e;
 			size++;
-		}
 	}
 
 	/**
